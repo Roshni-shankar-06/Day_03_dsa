@@ -1,1 +1,63 @@
+ALGORITHM: Substring with Concatenation of All Words
 
+1. Start.
+
+2. If s or words is empty:
+       Return an empty list.
+
+3. Find:
+       word_len = length of each word
+       word_count = number of words
+       total_len = word_len * word_count
+
+4. Store the frequency of every word in a hash map.
+
+5. Create an empty list called ans.
+
+6. For each offset from 0 to word_len - 1:
+
+       Set:
+           left = offset
+           count = 0
+           seen = empty hash map
+
+7. Move through the string using word_len steps.
+
+8. Extract the current word.
+
+9. If the current word is not present in word_count:
+
+       Clear seen.
+       Set count = 0.
+       Move left to the next position.
+
+10. Otherwise:
+
+       Add the current word to seen.
+       Increase count by 1.
+
+11. If the current word appears more times
+    than required:
+
+       Remove words from the left side
+       of the window until the frequency
+       becomes valid.
+
+12. If count equals word_count:
+
+       Add left to ans.
+
+13. Continue until all possible windows
+    have been checked.
+
+14. Return ans.
+
+TIME COMPLEXITY:
+O(n)
+
+SPACE COMPLEXITY:
+O(m)
+
+where:
+n = length of the string
+m = number of distinct words
