@@ -1,1 +1,66 @@
+# LeetCode 22 — Generate Parentheses
 
+## Problem
+
+Given `n` pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+## Approach
+
+This solution uses **Backtracking**.
+
+We build the parentheses string step by step using two counters:
+
+- `left` — number of opening parentheses used.
+- `right` — number of closing parentheses used.
+
+Rules:
+
+- We can add `(` if `left < n`.
+- We can add `)` only if `right < left`.
+- When `left == n` and `right == n`, a valid combination is complete.
+
+This guarantees that every generated string is a valid combination of parentheses.
+
+## Algorithm
+
+1. Create an empty list to store the answers.
+2. Start DFS with:
+   - `left = 0`
+   - `right = 0`
+   - an empty string.
+3. If `left == n` and `right == n`, add the current string to the answer.
+4. If `left < n`, add `(` and continue recursively.
+5. If `right < left`, add `)` and continue recursively.
+6. Backtrack after each recursive call.
+7. Return the list of all valid combinations.
+
+## Example
+
+Input:
+
+`n = 3`
+
+Output:
+
+`["((()))","(()())","(())()","()(())","()()()"]`
+
+## Example 2
+
+Input:
+
+`n = 1`
+
+Output:
+
+`["()"]`
+
+## Complexity Analysis
+
+- Time Complexity: `O(4^n / √n)`
+- Space Complexity: `O(n)` excluding the output.
+
+The number of valid combinations is the `n`th Catalan number.
+
+## Key Concept
+
+The main concept used is **Backtracking**, where we build valid parentheses combinations while immediately avoiding invalid choices.
