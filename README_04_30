@@ -1,1 +1,81 @@
+# LeetCode 30 — Substring with Concatenation of All Words
 
+## Problem
+
+You are given a string `s` and an array of strings `words`.
+
+All strings in `words` have the same length.
+
+A valid substring is formed by concatenating every word in `words` exactly once, in any order.
+
+Return the starting indices of all valid substrings.
+
+## Approach
+
+This solution uses a **Sliding Window** with a **Hash Map**.
+
+Since every word has the same length, we can divide the string into blocks of that word length.
+
+We maintain:
+
+- `word_count` — stores how many times each word should appear.
+- `seen` — stores how many times each word appears in the current window.
+- `left` — starting position of the current window.
+- `count` — number of words currently included in the window.
+
+For every possible starting offset from `0` to `word_length - 1`, we move through the string in steps of `word_length`.
+
+If a word is not present in `word_count`, reset the current window.
+
+If a word occurs too many times, move `left` forward and remove words until the count becomes valid.
+
+When the window contains exactly all words, add `left` to the answer.
+
+## Algorithm
+
+1. If `s` or `words` is empty, return an empty list.
+2. Store the frequency of every word in a hash map.
+3. Let `word_len` be the length of each word.
+4. Let `total_len = word_len * len(words)`.
+5. Try every starting offset from `0` to `word_len - 1`.
+6. Use a sliding window for each offset.
+7. Extract one word at a time.
+8. If the word is not required, reset the window.
+9. Otherwise, add the word to the current frequency map.
+10. If a word appears too many times, move the left pointer forward.
+11. When the window contains all words, store the left index.
+12. Return all stored indices.
+
+## Example
+
+Input:
+
+`s = "barfoothefoobarman"`
+
+`words = ["foo","bar"]`
+
+Output:
+
+`[0,9]`
+
+Explanation:
+
+The valid substrings are:
+
+`"barfoo"` starting at index `0`
+
+`"foobar"` starting at index `9`
+
+## Complexity Analysis
+
+- Time Complexity: `O(n)`
+- Space Complexity: `O(m)`
+
+Where:
+
+- `n` is the length of the string.
+- `m` is the number of distinct words.
+
+## Key Concept
+
+The main concept used is **Sliding Window + Hash Map**, which efficiently finds concatenations without generating every possible permutation of the words.
