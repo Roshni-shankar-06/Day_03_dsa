@@ -1,1 +1,34 @@
+class Solution:
+    def solveSudoku(self, board):
+        def valid(r, c, n):
+            for i in range(9):
+                if board[r][i] == n or board[i][c] == n:
+                    return False
 
+            sr, sc = (r // 3) * 3, (c // 3) * 3
+
+            for i in range(sr, sr + 3):
+                for j in range(sc, sc + 3):
+                    if board[i][j] == n:
+                        return False
+
+            return True
+
+        def solve():
+            for r in range(9):
+                for c in range(9):
+                    if board[r][c] == '.':
+                        for n in '123456789':
+                            if valid(r, c, n):
+                                board[r][c] = n
+
+                                if solve():
+                                    return True
+
+                                board[r][c] = '.'
+
+                        return False
+
+            return True
+
+        solve()
