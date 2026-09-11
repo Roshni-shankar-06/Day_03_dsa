@@ -1,1 +1,92 @@
+# LeetCode 37 - Sudoku Solver
 
+## Problem
+
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+A Sudoku solution must satisfy the following conditions:
+
+- Each row contains the digits `1-9` without repetition.
+- Each column contains the digits `1-9` without repetition.
+- Each 3 × 3 sub-box contains the digits `1-9` without repetition.
+- Empty cells are represented by `.`.
+
+The given Sudoku puzzle has a single valid solution.
+
+---
+
+## Approach
+
+This problem is solved using **Backtracking**.
+
+We find an empty cell and try placing each digit from `1` to `9`.
+
+For every digit, we check whether it is valid in the:
+
+1. Current row
+2. Current column
+3. Current 3 × 3 sub-box
+
+If the digit is valid, we place it and recursively solve the remaining board.
+
+If the solution cannot be completed, we undo the placement and try another digit.
+
+This process continues until the complete Sudoku board is solved.
+
+---
+
+## Algorithm
+
+1. Start scanning the Sudoku board.
+2. Find an empty cell represented by `.`.
+3. Try every digit from `1` to `9`.
+4. Check whether the digit is valid:
+   - It should not already exist in the same row.
+   - It should not already exist in the same column.
+   - It should not already exist in the same 3 × 3 sub-box.
+5. If the digit is valid, place it in the empty cell.
+6. Recursively solve the remaining Sudoku.
+7. If the recursive call returns `True`, the Sudoku is solved.
+8. If it fails, remove the placed digit and try another digit.
+9. If no digit works, return `False` and backtrack.
+10. Continue until all cells are filled.
+
+---
+
+## Python 3 Code
+
+```python
+class Solution:
+    def solveSudoku(self, board):
+        def valid(r, c, n):
+            for i in range(9):
+                if board[r][i] == n or board[i][c] == n:
+                    return False
+
+            sr, sc = (r // 3) * 3, (c // 3) * 3
+
+            for i in range(sr, sr + 3):
+                for j in range(sc, sc + 3):
+                    if board[i][j] == n:
+                        return False
+
+            return True
+
+        def solve():
+            for r in range(9):
+                for c in range(9):
+                    if board[r][c] == '.':
+                        for n in '123456789':
+                            if valid(r, c, n):
+                                board[r][c] = n
+
+                                if solve():
+                                    return True
+
+                                board[r][c] = '.'
+
+                        return False
+
+            return True
+
+        solve()
