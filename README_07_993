@@ -1,1 +1,27 @@
+LeetCode 993 - Cousins in Binary Tree
+
+## Problem
+
+Given the root of a binary tree and two integers `x` and `y`, determine whether the nodes with values `x` and `y` are cousins.
+
+Two nodes are cousins if:
+
+- They are at the same depth.
+- They have different parents.
+
+---
+
+## Approach
+
+This problem can be solved using **Breadth-First Search (BFS)**.
+
+We traverse the tree level by level.
+
+For each level:
+
+1. Search for nodes `x` and `y`.
+2. Record their parents.
+3. Check whether both nodes are found at the same level.
+4. If they have different parents, they are cousins.
+5. If they have the same parent, they are siblings and therefore not cousins.
 
