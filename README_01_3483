@@ -1,1 +1,83 @@
+# LeetCode 3483 — Unique 3-Digit Even Numbers
 
+## Problem
+
+You are given an array of digits called `digits`.
+
+Determine the number of distinct three-digit even numbers that can be formed using these digits.
+
+Each copy of a digit can be used only once per number, and the number cannot have a leading zero.
+
+## Approach
+
+This solution uses **Permutations**.
+
+We generate every possible arrangement of 3 digits from the given array.
+
+For each permutation:
+
+- The first digit cannot be `0`.
+- The last digit must be even.
+- Each digit can only be used once because permutations select different positions from the input.
+- A `set` is used to store the numbers so that duplicate numbers are counted only once.
+
+After checking all possible 3-digit combinations, return the size of the set.
+
+## Algorithm
+
+1. Generate all permutations of length 3 from `digits`.
+2. For each permutation `(a, b, c)`:
+   - Check that `a != 0`.
+   - Check that `c` is even.
+3. Form the number:
+   `a * 100 + b * 10 + c`
+4. Add the number to a set.
+5. Continue until all permutations are checked.
+6. Return the number of elements in the set.
+
+## Example
+
+Input:
+
+`digits = [1,2,3,4]`
+
+Output:
+
+`12`
+
+The valid distinct 3-digit even numbers include:
+
+`124, 132, 134, 142, 214, 234, 312, 314, 324, 342, 412, 432`
+
+Therefore, the answer is `12`.
+
+## Example 2
+
+Input:
+
+`digits = [0,2,2]`
+
+Output:
+
+`2`
+
+The valid numbers are:
+
+`202, 220`
+
+The number `022` is not valid because a 3-digit number cannot start with zero.
+
+## Complexity Analysis
+
+- Time Complexity: `O(n³)`
+- Space Complexity: `O(k)`
+
+Where:
+- `n` is the number of digits.
+- `k` is the number of distinct valid 3-digit numbers stored in the set.
+
+## Key Concept
+
+The main concepts used are **Permutations** and a **Set**.
+
+Permutations generate all possible 3-digit arrangements, while the set removes duplicate numbers.
