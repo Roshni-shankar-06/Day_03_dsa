@@ -1,1 +1,48 @@
+from collections import deque
 
+class Solution:
+    def isCousins(self, root, x, y):
+        q = deque([(root, None)])
+
+        while q:
+            parents = {}
+
+            for _ in range(len(q)):
+                node, parent = q.popleft()
+
+                if node.val == x:
+                    parents[x] = parent
+
+                if node.val == y:
+                    parents[y] = parent
+
+                if node.left:
+                    q.append((node.left, node))
+
+                if node.right:
+                    q.append((node.right, node))
+
+            if x in parents or y in parents:
+                return x in parents and y in parents and parents[x] != parents[y]
+
+        return False
+Complexity Analysis
+Time Complexity
+O(n)
+
+Each node in the binary tree is visited at most once.
+
+Space Complexity
+O(n)
+
+The queue can contain up to n nodes in the worst case.
+
+Key Concept
+Breadth-First Search (BFS)
+Level Order Traversal
+
+BFS is useful here because nodes at the same depth are processed together.
+
+Result
+
+The solution successfully determines whether the two given nodes are cousins in a binary tree using level-order traversal and parent tracking.
