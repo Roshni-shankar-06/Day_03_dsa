@@ -1,1 +1,13 @@
+## Algorithm
 
+1. Traverse the 9 × 9 Sudoku board to find an empty cell (`.`).
+2. For the empty cell, try placing digits from `1` to `9`.
+3. Check whether the selected digit is valid in the current:
+   - Row
+   - Column
+   - 3 × 3 sub-box
+4. If the digit is valid, place it in the cell.
+5. Recursively solve the remaining empty cells.
+6. If the recursive solution fails, remove the digit and try the next digit.
+7. Continue this process using backtracking until the entire Sudoku is solved.
+8. The completed board is modified in-place.
