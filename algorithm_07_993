@@ -1,1 +1,13 @@
+1. Start BFS traversal from the root.
+2. Store each node along with its parent.
+3. Process the tree one level at a time.
+4. For every node:
+   - Check whether its value is `x` or `y`.
+   - Store its parent.
+5. After processing a complete level:
+   - If both `x` and `y` are found, check their parents.
+   - If their parents are different, return `True`.
+   - Otherwise, return `False`.
+6. If only one node is found at a level, return `False`.
+7. Continue until the nodes are found or the tree is completely traversed.
 
