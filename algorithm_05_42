@@ -1,1 +1,40 @@
+ALGORITHM: Trapping Rain Water
 
+1. Start.
+
+2. Initialize:
+       left = 0
+       right = length of height - 1
+       left_max = 0
+       right_max = 0
+       water = 0
+
+3. Repeat while left < right:
+
+       If height[left] < height[right]:
+
+           If height[left] >= left_max:
+               left_max = height[left]
+
+           Else:
+               water = water + left_max - height[left]
+
+           Move left one position forward.
+
+       Otherwise:
+
+           If height[right] >= right_max:
+               right_max = height[right]
+
+           Else:
+               water = water + right_max - height[right]
+
+           Move right one position backward.
+
+4. Return water.
+
+TIME COMPLEXITY:
+O(n)
+
+SPACE COMPLEXITY:
+O(1)
