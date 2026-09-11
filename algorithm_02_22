@@ -1,1 +1,46 @@
+ALGORITHM: Generate Parentheses
 
+1. Start.
+
+2. Create an empty list called ans.
+
+3. Define a recursive DFS function with:
+       left
+       right
+       current string
+
+4. If:
+       left == n AND right == n
+
+   Then:
+       Add the current string to ans.
+       Return.
+
+5. If:
+       left < n
+
+   Then:
+       Add "(" to the current string.
+       Increment left.
+       Recursively call DFS.
+
+6. If:
+       right < left
+
+   Then:
+       Add ")" to the current string.
+       Increment right.
+       Recursively call DFS.
+
+7. Backtrack after each recursive call.
+
+8. Continue until all valid combinations
+   have been generated.
+
+9. Return ans.
+
+TIME COMPLEXITY:
+O(4^n / √n)
+
+SPACE COMPLEXITY:
+O(n) excluding the output.
