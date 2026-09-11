@@ -1,1 +1,37 @@
+ALGORITHM: Unique 3-Digit Even Numbers
 
+1. Start.
+
+2. Create an empty set called nums.
+
+3. Generate all permutations of 3 digits
+   from the given digits array.
+
+4. For every permutation (a, b, c):
+
+      If a is equal to 0:
+          Ignore this permutation.
+
+      If c is not even:
+          Ignore this permutation.
+
+5. Otherwise, form the number:
+
+      number = a * 100 + b * 10 + c
+
+6. Add the number to the set.
+
+7. Continue until all possible permutations
+   have been checked.
+
+8. Return the size of the set.
+
+TIME COMPLEXITY:
+O(n³)
+
+SPACE COMPLEXITY:
+O(k)
+
+where:
+n = number of digits
+k = number of distinct valid numbers
